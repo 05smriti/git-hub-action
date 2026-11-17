@@ -1,0 +1,19 @@
+name: Manual
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Who to greet
+        required: true
+        default: World
+      shout:
+        type: boolean
+        default: false
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello ${{ inputs.name }}"
+      - if: inputs.shout
+        run: echo "HELLO ${{ inputs.name }}!!!"
