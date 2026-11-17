@@ -1,9 +1,23 @@
-name: Hello
-on: push
 jobs:
-  greet:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello from $GITHUB_ACTOR"
-      - run: echo "Commit is ${{ github.sha }}"
-      - run: uname -a && pwd && ls
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  verify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+      - run: cat out.txt

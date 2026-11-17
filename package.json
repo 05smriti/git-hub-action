@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node --test"
-  },
+    "test": "node --test"},
+  "build": "mkdir -p dist && echo built > dist/out.txt" 
+
   "keywords": [],
   "author": "",
   "license": "ISC"
