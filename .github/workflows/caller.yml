@@ -1,0 +1,11 @@
+name: Caller
+on: push
+jobs:
+  node18:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: '18'
+  node22:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: '22'
